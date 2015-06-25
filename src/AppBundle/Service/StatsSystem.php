@@ -8,10 +8,11 @@
 
 namespace AppBundle\Service;
 
+use AppBundle\Event\UpdateUserEvent;
 
-class StatsSystem
+class StatsSystem implements NotifyInterface
 {
-	public function postRequest($data)
+	public function postRequest(UpdateUserEvent $event)
 	{
 		return true;
 	}

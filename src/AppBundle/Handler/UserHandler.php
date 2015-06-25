@@ -11,10 +11,10 @@ namespace AppBundle\Handler;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\EventDispatcher\Event;
 use AppBundle\Model\User;
 use AppBundle\Model\UserRepositoryInterface;
 use AppBundle\Form\UserType;
+use AppBundle\Event\UpdateUserEvent;
 use AppBundle\Exception\InvalidFormException;
 use AppBundle\Model\Exception\UserDoesNotExist;
 
@@ -114,7 +114,7 @@ class UserHandler implements UserHandlerInterface
         if ($form->isValid()) {
             $user = $form->getData();
             $this->userRepository->update($user);
-            $this->eventDispatcher->dispatch('user.post_update', new Event($user));
+            $this->eventDispatcher->dispatch('user.post_update', new UpdateUserEvent($user));
 
             return $user;
         }

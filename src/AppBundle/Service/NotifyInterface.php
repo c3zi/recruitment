@@ -8,7 +8,7 @@
 
 namespace AppBundle\Service;
 
-use AppBundle\Model\User;
+use AppBundle\Event\UpdateUserEvent;
 
 interface NotifyInterface
 {
@@ -18,5 +18,5 @@ interface NotifyInterface
      * @param User $user
      * @return mixed
      */
-    public function notify(User $user);
+    public function postRequest(UpdateUserEvent $event);
 }
